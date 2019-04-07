@@ -67,9 +67,14 @@ AMS310 Homework 4
 Kuba Gasiorowski\\
 ID: 109776237\\
 
-\noindent \textbf{1a.} From the CLT, if the sample size is large, then the distribution of the sample mean is approximated by the normal distribution.\\
+\noindent \textbf{1a.} From the CLT, if the sample size is large, then the distribution of the sample mean is approximated by the normal distribution. This distribution has the following $\sigma_{\Xbar}$ and $\mu_{\Xbar}$:
+\begin{align*}
+\mu_{\Xbar} = \mu &= \boxed{31}\\
+\sigma_{\Xbar} = \frac{\sigma}{\sqrt{n}} &= \boxed{0.5}
+\end{align*}
 
 \noindent \textbf{b.} Find $P(\Xbar > 31.5)$ given $\mu = 31,\;\sigma = 5 \text{ and } n = 100$.
+
 
 \begin{align*}
 	P(\Xbar > 31.5) &= 1 - P(\Xbar < 31.5)&&\\
@@ -81,29 +86,31 @@ ID: 109776237\\
 	&= \boxed{0.15866}
 \end{align*}
 
-\noindent \textbf{2.} Given: $\mu=69.5, \; \sigma = 3$; find:\\
+\pagebreak
+\noindent \textbf{2.} Given: $\mu=69.5, \; \sigma = 3$; find:
 
 \noindent \textbf{a.} $P(68 < \Xbar < 70) \text{ with } n = 20$\\
 
 \begin{align*}
 	P(68 < \Xbar < 70) &= P\left(\frac{68 - \mu}{\frac{\sigma}{\sqrt{n}}} < Z < \frac{70 - \mu}{\frac{\sigma}{\sqrt{n}}}\right)\\
 	&= P\left(\frac{68 - 69.5}{\frac{3}{\sqrt{20}}} < Z < \frac{70 - 69.5}{\frac{3}{\sqrt{20}}}\right)\\
-	&= P(-2.23 < Z < 0.74)\\
-	&= \Phi(0.74) - \Phi(-2.23)\\
-	&= .77035 - .01287 \\
-	&= \boxed{.75748}
+	&= P(-2.24 < Z < 0.75)\\
+	&= \Phi(0.75) - \Phi(-2.24)\\
+	&= .7734 - .0125 \\
+	&= \boxed{.7609}
 \end{align*}
 
 \noindent \textbf{b.} Given $P(68.52 < \Xbar < 70.48) = .95$, find $n$.
 
 \begin{align*}
 	.95 &= P(68.52 < \Xbar < 70.48)\\
-	&= \Phi\left(\frac{70.48-\mu}{\frac{\sigma}{\sqrt{n}}}\right) - \Phi\left(\frac{68.52-\mu}{\frac{\sigma}{\sqrt{n}}}\right)\\
-	&= \Phi\left(\frac{70.48 - 69.5}{\frac{3}{\sqrt{n}}}\right) - \Phi\left(\frac{68.52-69.5}{\frac{3}{\sqrt{n}}}\right)\\
+	.95 &= \Phi\left(\frac{70.48-\mu}{\frac{\sigma}{\sqrt{n}}}\right) - \Phi\left(\frac{68.52-\mu}{\frac{\sigma}{\sqrt{n}}}\right)\\
+	.95 &= \Phi\left(\frac{70.48 - 69.5}{\frac{3}{\sqrt{n}}}\right) - \Phi\left(\frac{68.52-69.5}{\frac{3}{\sqrt{n}}}\right)\\
 \end{align*}
 
-\noindent Now that we have everything in terms of $n$, we solve. But since this calculation is tedious, I just plugged the formula into my calculator and guess-and-checked until I arrived at \boxed{n = 36}. Plugging $n$ back in, I verified that this is in fact correct.\\
+\noindent Now that we have everything in terms of $n$, we solve. But since this calculation is tedious, I just plugged the formula into my calculator and guess-and-checked until I arrived at \boxed{n = 36.} Plugging $n$ back in, I verified that this is in fact correct.\\
 
+\pagebreak
 \noindent \textbf{c.} First we find $P(X < 68)$:
 
 \begin{align*}
@@ -120,7 +127,6 @@ ID: 109776237\\
 	&= \boxed{0.0294}
 \end{align*}
 
-\pagebreak
 \noindent \textbf{3a.} 
 
 \begin{align*}
@@ -128,9 +134,10 @@ ID: 109776237\\
 	&= \int_{0}^{1}x\left(\frac{3x^2}{2} + x\right)dx\\
 	&= \int_{0}^{1}\frac{3x^3}{2} + x^2dx\\
 	&= \left[\frac{3x^4}{8} + \frac{x^3}{3}\right]_0^1\\
-	&\approx \boxed{0.708}
+	&= \boxed{\frac{17}{24} \approx 0.708}
 \end{align*}
 
+\pagebreak
 \noindent \textbf{b.} 
 
 \begin{align*}
@@ -142,7 +149,6 @@ ID: 109776237\\
 	&= \boxed{0.0487}
 \end{align*}
 
-\pagebreak
 \noindent \textbf{c.} 
 
 \begin{align*}
@@ -150,35 +156,43 @@ ID: 109776237\\
 	&= P\left(\frac{0.7 - 0.708}{\frac{\sqrt{0.0487}}{\sqrt{100}}} < Z < \frac{0.75 - 0.708}{\frac{\sqrt{0.0487}}{\sqrt{100}}}\right)\\
 	&= P(-0.36 < Z < 1.90)\\
 	&= \Phi(1.90) - \Phi(-0.36)\\
-	&= 0.97128 - 0.35569\\
-	&= \boxed{0.61559}
+	&= 0.9713 - 0.3594\\
+	&= \boxed{0.6119}
 \end{align*}
 
-\noindent \textbf{4a.} From the $\chi^2$ table, for values of $df = 14$ and $p = 0.05$, we get a value of \boxed{23.685}.\\
+\pagebreak
+\noindent \textbf{4a.} From the $\chi^2$ table, for values of $df = 14$ and $\alpha = 0.05$, we get a value of 23.685. Then:
+
+\begin{align*}
+	\frac{(n-1)s^2}{\sigma^2} &= \chi^2_{\alpha,\; n-1}\\
+	s^2 &= \frac{\chi^2_{\alpha,\;n-1} \cdot \sigma^2}{n-1}\\
+	&= \frac{(23.68) \cdot 3}{14}\\
+	&= \boxed{5.0753}
+\end{align*}
 
 \noindent \textbf{b.} 
 \begin{verbatim}
-> qchisq(.95, 14)
-[1] 23.68479
+> 3*qchisq(.95, 14)/14
+[1] 5.0753
 \end{verbatim}
 
 \noindent \textbf{5a.} 
 \begin{verbatim}
-> pf(1.7298, 8, 12)
-[1] 0.8109501
+> pf(1.7298, 7, 11)
+[1] 0.799998
 \end{verbatim}
 
 \noindent \textbf{b.}
 \begin{verbatim}
-> pf(1.7298, 8, 12) - pf(0.3726, 8, 12)
-[1] 0.7266569
+> pf(1.7298, 7, 11) - pf(0.3726, 7, 11)
+[1] 0.6999914
 \end{verbatim}
 
 \noindent \textbf{c.}
 \begin{verbatim}
-> A <- c(1, 2, 3, 4)
-> 1-pf(A, 8, 12)
-[1] 0.48260966 0.13467681 0.04242239 0.01564231
+> A <- c(1,2,3,4)
+> 1 - pf(A, 7, 11)
+[1] 0.47950897 0.14625028 0.05060951 0.02029701
 \end{verbatim}
 
 \end{document}
