@@ -1,0 +1,186 @@
+\documentclass[12pt]{report}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[absolute,overlay]{textpos}
+\graphicspath{ {./img/} }
+\setlength\parindent{0pt}
+
+\makeatletter
+\newcommand*{\Xbar}{}%
+\DeclareRobustCommand*{\Xbar}{%
+	\mathpalette\@Xbar{}%
+}
+\newcommand*{\@Xbar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{X}\m@th$}%
+	\sbox2{$#1X\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\newcommand{\thn}{\textsuperscript{th}}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{} #2 \\
+		#3 & \mbox{} #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{} #2 \\
+		#3 & \mbox{} #4 \\
+		#5 & \mbox{} #6
+	\end{array}
+	\right.
+}
+
+\begin{document}
+
+\Large
+\centering
+AMS310 Homework 4
+
+\justify
+\normalsize
+
+Kuba Gasiorowski\\
+ID: 109776237\\
+
+\noindent \textbf{1a.} From the CLT, if the sample size is large, then the distribution of the sample mean is approximated by the normal distribution.\\
+
+\noindent \textbf{b.} Find $P(\Xbar > 31.5)$ given $\mu = 31,\;\sigma = 5 \text{ and } n = 100$.
+
+\begin{align*}
+	P(\Xbar > 31.5) &= 1 - P(\Xbar < 31.5)&&\\
+	&= 1 - P\left(Z < \frac{31.5 - \mu}{\frac{\sigma}{\sqrt{n}}}\right)\\
+	&= 1 - P\left(Z < \frac{31.5 - 31}{\frac{5}{\sqrt{100}}}\right)\\
+	&= 1 - P(Z < 1)\\
+	&= 1 - \Phi(1)\\
+	&= 1 - .84134\\
+	&= \boxed{0.15866}
+\end{align*}
+
+\noindent \textbf{2.} Given: $\mu=69.5, \; \sigma = 3$; find:\\
+
+\noindent \textbf{a.} $P(68 < \Xbar < 70) \text{ with } n = 20$\\
+
+\begin{align*}
+	P(68 < \Xbar < 70) &= P\left(\frac{68 - \mu}{\frac{\sigma}{\sqrt{n}}} < Z < \frac{70 - \mu}{\frac{\sigma}{\sqrt{n}}}\right)\\
+	&= P\left(\frac{68 - 69.5}{\frac{3}{\sqrt{20}}} < Z < \frac{70 - 69.5}{\frac{3}{\sqrt{20}}}\right)\\
+	&= P(-2.23 < Z < 0.74)\\
+	&= \Phi(0.74) - \Phi(-2.23)\\
+	&= .77035 - .01287 \\
+	&= \boxed{.75748}
+\end{align*}
+
+\noindent \textbf{b.} Given $P(68.52 < \Xbar < 70.48) = .95$, find $n$.
+
+\begin{align*}
+	.95 &= P(68.52 < \Xbar < 70.48)\\
+	&= \Phi\left(\frac{70.48-\mu}{\frac{\sigma}{\sqrt{n}}}\right) - \Phi\left(\frac{68.52-\mu}{\frac{\sigma}{\sqrt{n}}}\right)\\
+	&= \Phi\left(\frac{70.48 - 69.5}{\frac{3}{\sqrt{n}}}\right) - \Phi\left(\frac{68.52-69.5}{\frac{3}{\sqrt{n}}}\right)\\
+\end{align*}
+
+\noindent Now that we have everything in terms of $n$, we solve. But since this calculation is tedious, I just plugged the formula into my calculator and guess-and-checked until I arrived at \boxed{n = 36}. Plugging $n$ back in, I verified that this is in fact correct.\\
+
+\noindent \textbf{c.} First we find $P(X < 68)$:
+
+\begin{align*}
+	P(X < 68) &= P\left(Z < \frac{68 - 69.5}{3}\right)\\
+	&= \Phi(-0.5)\\
+	&= .30854
+\end{align*}
+
+\noindent Now we find $P(Y \geq 25)$:
+
+\begin{align*}
+	P(Y \geq 25) &= 1 - P(Y = 24)\\
+	&= 1 - \left[{100 \choose 24} \cdot 0.30854^{24} \cdot (1-0.30854)^{76}\right]\\
+	&= \boxed{0.0294}
+\end{align*}
+
+\pagebreak
+\noindent \textbf{3a.} 
+
+\begin{align*}
+	\text{Mean of }X = E(X) &= \int_{-\infty}^{\infty}xf(x)dx\\
+	&= \int_{0}^{1}x\left(\frac{3x^2}{2} + x\right)dx\\
+	&= \int_{0}^{1}\frac{3x^3}{2} + x^2dx\\
+	&= \left[\frac{3x^4}{8} + \frac{x^3}{3}\right]_0^1\\
+	&\approx \boxed{0.708}
+\end{align*}
+
+\noindent \textbf{b.} 
+
+\begin{align*}
+	\text{Var of X} &= E(X^2) - E(X)^2\\
+	&= \int_{-\infty}^{\infty} x^2 f(x)dx - \mu^2\\
+	&= \int_{0}^{1} x^2\left(\frac{3x^2}{2} + x\right)dx - 0.708^2\\
+	&= \int_{0}^{1}\frac{3x^4}{2} + x^3dx - 0.708^2\\
+	&= 0.55 - 0.708^2\\
+	&= \boxed{0.0487}
+\end{align*}
+
+\pagebreak
+\noindent \textbf{c.} 
+
+\begin{align*}
+	P(0.7 < \Xbar < 0.75) &= P\left(\frac{0.7 - \mu}{\frac{\sqrt{\sigma^2}}{\sqrt{n}}} < Z < \frac{0.75 - \mu}{\frac{\sqrt{\sigma^2}}{\sqrt{n}}}\right)\\
+	&= P\left(\frac{0.7 - 0.708}{\frac{\sqrt{0.0487}}{\sqrt{100}}} < Z < \frac{0.75 - 0.708}{\frac{\sqrt{0.0487}}{\sqrt{100}}}\right)\\
+	&= P(-0.36 < Z < 1.90)\\
+	&= \Phi(1.90) - \Phi(-0.36)\\
+	&= 0.97128 - 0.35569\\
+	&= \boxed{0.61559}
+\end{align*}
+
+\noindent \textbf{4a.} From the $\chi^2$ table, for values of $df = 14$ and $p = 0.05$, we get a value of \boxed{23.685}.\\
+
+\noindent \textbf{b.} 
+\begin{verbatim}
+> qchisq(.95, 14)
+[1] 23.68479
+\end{verbatim}
+
+\noindent \textbf{5a.} 
+\begin{verbatim}
+> pf(1.7298, 8, 12)
+[1] 0.8109501
+\end{verbatim}
+
+\noindent \textbf{b.}
+\begin{verbatim}
+> pf(1.7298, 8, 12) - pf(0.3726, 8, 12)
+[1] 0.7266569
+\end{verbatim}
+
+\noindent \textbf{c.}
+\begin{verbatim}
+> A <- c(1, 2, 3, 4)
+> 1-pf(A, 8, 12)
+[1] 0.48260966 0.13467681 0.04242239 0.01564231
+\end{verbatim}
+
+\end{document}
+
+
