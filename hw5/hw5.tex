@@ -1,0 +1,203 @@
+\documentclass[12pt]{report}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\graphicspath{ {./img/} }
+\setlength\parindent{0pt}
+
+\makeatletter
+\newcommand*{\Xbar}{}%
+\DeclareRobustCommand*{\Xbar}{%
+	\mathpalette\@Xbar{}%
+}
+\newcommand*{\@Xbar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{X}\m@th$}%
+	\sbox2{$#1X\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\makeatletter
+\newcommand*{\xbar}{}%
+\DeclareRobustCommand*{\xbar}{%
+	\mathpalette\@xbar{}%
+}
+\newcommand*{\@xbar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{x}\m@th$}%
+	\sbox2{$#1x\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\newcommand{\thn}{\textsuperscript{th}}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{} #2 \\
+		#3 & \mbox{} #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{} #2 \\
+		#3 & \mbox{} #4 \\
+		#5 & \mbox{} #6
+	\end{array}
+	\right.
+}
+
+\newcommand{\sep}{\medskip\hrule\medskip}
+
+\begin{document}
+
+\Large
+\centering
+AMS310 Homework 5
+
+\justify
+\normalsize
+
+Kuba Gasiorowski\\
+ID: 109776237\\
+
+\noindent \textbf{Chapter 7}\\
+
+\noindent \textbf{1.} The correct answer is \boxed{d}. This is because we should reject H$_0$ when $p \leq \alpha$ and do not reject when $\text{H}_0$ if $p > \alpha$. Both values of $\alpha$ are greater than our $p$-value.
+
+\sep
+
+\noindent \textbf{2a.} Our testing hypothesis is such: The mean warm up time of a certain brand of printer is greater than 15 seconds $\boxed{(H_0: \; p = 15, H_1: \; p > 15)}.$\\
+
+\noindent \textbf{b.} It would be appropriate to reject $\boxed{\text{H}_0}$.\\
+
+\noindent \textbf{c.} The engineer did not make the correct decision, as $14 < 15$, which makes the null hypothesis true. This is a type I error.
+
+\sep
+
+\noindent \textbf{3a.} H$_0 :\;p \geq 8$, H$_1 :\;p < 8$\\
+
+\noindent \textbf{b.} 
+\begin{align*}
+	\alpha &= P(\text{type II error})\\
+	&= P(\text{failure to reject H}_0 \text{ when } \mu = 5)\\
+	&= P\left(\Xbar \leq 6\text{ when }\Xbar \sim N\left(5, \left(\frac{3}{\sqrt{20}}\right)^2\right)\right)\\ 
+	&= P\left(Z > \frac{6-5}{\frac{3}{\sqrt{20}}}\right)\\
+	&= 1-\Phi(1.49)\\
+	&= 1-0.9319\\
+	&= \boxed{0.0681}	
+\end{align*}
+
+\pagebreak
+\noindent \textbf{Chapter 8}\\
+
+\noindent \textbf{1a.} For $n = 120, \; s = 3.7, \; \xbar = 36.1, \; z_{0.025} = 1.96$\\\\
+\begin{math}
+	\left(\xbar - z_{\alpha/2}\frac{s}{\sqrt{n}}, \; \xbar + z_{\alpha/2}\frac{s}{\sqrt{n}}\right)\\
+	 \left(36.1 - 1.96\frac{3.7}{\sqrt{120}}, \; 36.1 + 1.96\frac{3.7}{\sqrt{120}}\right)\\
+	 \boxed{(35.44, 36.76)}\\
+\end{math}
+
+\noindent \textbf{b.} 
+\begin{align*}
+	n &= \left(\frac{z_{\alpha/2}\sigma}{E}\right)^2\\
+	&= \left(\frac{2.57 \cdot 4}{0.5}\right)^2\\
+	&= \boxed{423}
+\end{align*}
+
+\noindent \textbf{2a.} H$_0 : \; \mu = 28$, H$_1 : \; \mu \neq 28$
+
+\begin{align*}
+	z &= \frac{\xbar - \mu}{\frac{\sigma}{\sqrt{n}}}\\
+	&= \frac{27.32 - 28}{\frac{12}{\sqrt{16}}}\\
+	&= -2.27
+\end{align*} 
+Thus the rejection region $ \rightarrow |z| \geq z_{0.01}$\\
+$|z| = 2.27, z_{0.01} = 2.33, \boxed{\text{ thus we reject H}_0}$\\
+
+\begin{align*}
+	P(|Z| > 2.27) &= 2P(Z < -2.27)\\
+	&= 2(0.0116)\\
+	&= \boxed{0.0232} \text{ (p value)}
+\end{align*}
+
+\pagebreak
+\noindent \textbf{b.} 
+\begin{align*}
+	\text{Probability of type II error } &= \Phi\left(z_{\alpha/2} + \frac{\mu_0 - \mu'}{\frac{\sigma}{\sqrt{n}}}\right)-\Phi\left(-z_{\alpha/2} + \frac{\mu_0 - \mu'}{\frac{\sigma}{\sqrt{n}}}\right)\\
+	&= \Phi\left(2.57 + \frac{28 - 27}{\frac{1.2}{\sqrt{16}}}\right)-\Phi\left(-2.57 + \frac{28 - 27}{\frac{1.2}{\sqrt{16}}}\right)\\
+	&= \Phi(5.90) - \Phi(0.763)\\
+	&= 1 - 0.7764\\
+	&= \boxed{0.2236}
+\end{align*}
+
+\noindent \textbf{c.} $\beta(27) = 0.1,\;\alpha = 0.01$
+\begin{align*}
+	n &= \left(\frac{\sigma(z_{\alpha/2} + z_\beta)}{\mu_0 - \mu'}\right)^2\\
+	&= \left(\frac{1.2(2.57 + 1.28)}{28 - 27}\right)^2\\
+	&= \boxed{22}
+\end{align*}
+
+\noindent \textbf{3a.} H$_0 : \; \mu \geq 240$, H$_1 : \; \mu < 240$\\
+
+\begin{align*}
+	z &= \frac{\xbar - \mu_0}{\sigma / \sqrt{n}}\\
+	&= \frac{230-240}{20/\sqrt{16}}\\
+	z &= -2
+\end{align*}
+
+$z = -2, \; z_{0.05} = -1.64$
+$z \leq -z_{0.05}? \rightarrow \boxed{-2 \leq 1.64 \;\checkmark}$(We do not reject the hypothesis)
+
+\begin{align*}
+	p\text{-value } &= P(Z \leq z)\\
+	&= P(Z \leq -2)\\
+	&= \Phi(-2)\\
+	&= \boxed{0.0228}
+\end{align*}
+
+\pagebreak
+\noindent \textbf{b.} $\xbar = 230, \; \sigma = 20, \; n = 16$\\\\
+\begin{math}
+\left(\xbar - 1.96\left(\frac{\sigma}{\sqrt{n}}\right), \;\xbar + 1.96\left(\frac{\sigma}{\sqrt{n}}\right)\right)\\
+\left(230 - 1.96 \cdot 5, \; 230 + 1.96 \cdot 5\right)\\
+\boxed{(220.2, 239.8)}
+\end{math}
+
+\noindent \textbf{c.}
+
+\end{document}
+
+
