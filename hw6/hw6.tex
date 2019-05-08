@@ -103,6 +103,29 @@
 }
 \makeatother
 
+\makeatletter
+\newcommand*{\dbar}{}%
+\DeclareRobustCommand*{\dbar}{%
+	\mathpalette\@dbar{}%
+}
+\newcommand*{\@dbar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{d}\m@th$}%
+	\sbox2{$#1d\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
 \newcommand{\thn}{\textsuperscript{th}}
 
 \newcommand{\twopartdef}[4]
@@ -236,6 +259,25 @@ Area 2 $\rightarrow \Ybar = 0.0884;\; s_2 = 0.0028;\;m=15$\\
 	&= \boxed{0.0189}
 \end{align*}
 
+
+\noindent \textbf{b.}
+\begin{verbatim}
+> x = c(0.086, 0.119, ... 0.072, 0.113)
+> y = c(0.136, 0.106, ... 0.106, 0.103)
+> t.test(x, y, alternative = "less")
+
+Welch Two Sample t-test
+
+data:  x and y
+t = -1.1298, df = 27.966, p-value = 0.1341
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+-Inf 0.004787829
+sample estimates:
+mean of x  mean of y 
+0.08726667 0.09673333 
+\end{verbatim}
+
 \noindent \textbf{4a.} $\Xbar = 12.7,\;s_1 = 3.2,\;m=5$\\
 $\Ybar = 9.9,\;s_2=2.1,\;n=7$\\
 
@@ -248,6 +290,7 @@ $\Ybar = 9.9,\;s_2=2.1,\;n=7$\\
 	\rightarrow & \boxed{(-1.743, 7.343)}
 \end{align*}
 
+\pagebreak
 \noindent \textbf{b.} 
 
 \begin{align*}
@@ -280,6 +323,132 @@ $H_1 : \mu_1 \neq \mu_2$
 	&= 2(1 - 0.977)\\
 	&= \boxed{0.0462}
 \end{align*}
+
+\noindent \textbf{6a.} $d = \{2, 3, 2, 1, 0, 2, 1\},\; \dbar = 1.571, s_d = 0.976$\\
+
+\begin{align*}
+	\dbar &\pm (t_{\frac{\alpha}{2}=0.025,\;n-1=6})\frac{s_d}{\sqrt{n}}\\
+	1.571 &\pm (2.446)\frac{0.976}{\sqrt{7}}\\
+	1.571 &\pm 0.902\\
+	\rightarrow& \boxed{(0.669, 2.473)}
+\end{align*}
+
+\noindent \textbf{b.} $H_0 : \delta = 0, H_1 : \delta > 0$\\
+$\alpha = 0.05$
+\begin{align*}
+	t &= \frac{\dbar}{\frac{s_d}{\sqrt{n}}}\\
+	&= \frac{1.571}{\frac{0.976}{\sqrt{7}}}\\
+	&= 4.259\\\\
+	t_{\alpha, n-1} &= t_{0.05,\,6} \text{ (Rejection Region)}\\
+	&= 1.943\\\\
+	t &\geq t_{\alpha,\;n-1}\\
+	4.259 &\geq 1.943
+\end{align*}
+\noindent Thus we \underline{reject $H_0$}.
+\begin{align*}
+	p &= P(T \geq t)\\
+	&= 1 - P(T < t)\\
+	&= 1 - 0.9973\\
+	&= \boxed{0.0027}
+\end{align*}
+
+\noindent \textbf{c.} $H_0: \mu_1 = \mu_2,H_1 : \mu_1 < \mu_2$\\
+$\Xbar = 19, s_1 = 3.74, n = m =7$\\
+$\Ybar = 17.43, s_2 = 3.36$ \\
+$\alpha = 0.05, df = 12$
+\begin{align*}
+	s_p^2 &= \frac{(m-1)s_1^2 + (n-1)s_2^2}{m+n-2}\\
+	&= \frac{(6)4.74^2 + (6)3.36^2}{12}\\
+	&= 16.88\\
+	(s_p &= 4.109)
+\end{align*}
+\begin{align*}
+	t &= \frac{\Xbar - \Ybar}{(s_p)\sqrt{\frac{1}{m}+\frac{1}{n}}}\\
+	&= \frac{19 - 17.43}{4.109\sqrt{\frac{2}{7}}}\\
+	&= \frac{1.57}{2.196}\\
+	&= 0.715\\\\
+	t_{\alpha, m+n-2} &= t_{0.05, 12}\\
+	&= 1.782\\\\
+	t &< -t_{0.05, 12}\\
+	0.715 &\,\cancel{<}\, -1.782
+\end{align*}
+\noindent Thus we \underline{do not reject $H_0$}.
+\begin{align*}
+	p &= P(T \leq t)\\
+	&= P(T \leq 0.715)\\
+	&= \boxed{0.756}
+\end{align*}
+
+\noindent \textbf{7a.} $\hat{p_1} = \frac{x}{m} = 0.385,\hat{p_2} = \frac{y}{n} = 0.409$
+\begin{align*}
+	\hat{p_1} - \hat{p_2} &\pm z_{\frac{\alpha}{2}}\sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{m} + \frac{\hat{p_2}(1-\hat{p_2})}{n}}\\
+	0.385 - 0.409 &\pm 1.96\sqrt{\frac{0.385 \cdot 0.615}{1090} + \frac{0.409 \cdot 0.591}{2600}}\\
+	-0.024 &\pm 0.0345\\
+	\rightarrow& \boxed{(-0.0585, 0.0105)}
+\end{align*}
+
+\noindent \textbf{b.} $\hat{p} = \frac{x+y}{m+n} = 0.402$
+\begin{align*}
+	z &= \frac{\hat{p_1}-\hat{p_2}}{\sqrt{\hat{p}(a-\hat{p})\left(\frac{1}{m} + \frac{1}{n}\right)}}\\
+	&= \frac{0.385 - 0.409}{\sqrt{0.402(1-0.402)\left(\frac{1}{1090} + \frac{1}{2600}\right)}}\\
+	&= \boxed{-1.33}
+\end{align*}
+\begin{align*}
+	z_{\frac{\alpha}{2} = 0.025} &= 1.96\\\\
+	|z| &\geq z_{\frac{\alpha}{2}}\\
+	1.33 &\,\cancel{\geq}\, 1.96
+\end{align*}
+\noindent Thus we \underline{do not reject $H_0$}, which means there is no significant difference between the two proportions.
+\begin{align*}
+	p &= 2P(Z \geq |z|)\\
+	&= 2(1 - P(Z < |z|))\\
+	&= 2(1 - P(Z < 1.33))\\
+	&= \boxed{0.183}
+\end{align*}
+
+\noindent \textbf{8a.} $H_0 : \sigma^2_1 = \sigma^2_2, H_1 : \sigma^2_1 \neq \sigma^2_2$\\
+$m=n=9, s^2_1 = 123.5, s_2^2 = 102.4$
+\begin{align*}
+	f &= \frac{s_1^2}{s_2^2}\\
+	&= \frac{123.5^2}{102.4^2}\\
+	&= 1.455
+\end{align*}
+\begin{align*}
+	\text{Rejection regions: } f \geq F_{\frac{\alpha}{2},m-1,n-1}\text{ and } f \leq \frac{1}{F_{\frac{\alpha}{2},n-1,m-1}}
+\end{align*}
+\begin{align*}
+	F_{\frac{\alpha}{2}, m-1, n-2} &= F_{0.025,8,8}\\
+	&= 4.433\\\\
+	\frac{1}{F_{\frac{\alpha}{2}, n-1, m-2}} &= \frac{1}{F_{0.025,8,8}}\\
+	&= 0.226
+\end{align*}
+
+\noindent $f$ does not lie in any rejection region, so \underline{we do not reject $H_0$}.
+\begin{align*}
+	p &= 2 \cdot min\{P(F \geq f), P(F \leq f)\}\\
+	&= 2 \cdot min\{1 - P(F < f), P(F \leq f)\}\\
+	&= 2 \cdot min\{1 - P(F < 1.455), P(F \leq 1.455)\}\\
+	&= 2 \cdot 0.304\\
+	&= \boxed{0.608}
+\end{align*}
+
+\pagebreak
+\noindent \textbf{b.}
+\begin{verbatim}
+> f = 123.5^2/102.4^2
+> alpha = 0.025
+> n = 8
+> m = 8
+> f >= qf(1-alpha, m, n) || f <= 1/qf(1-alpha, n, m) 
+[1] FALSE
+\end{verbatim}
+
+\noindent Since the return value is false, we conclude that $f$ is not in the rejection region. \underline{Do not reject $H_0$}.\\\\Now to find the p-value:
+\begin{verbatim}
+> 2 * (min(pf(f, m, n), 1 - pf(f, m, n)))
+[1] 0.6085013
+\end{verbatim}
+
 
 \end{document}
 
