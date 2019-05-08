@@ -1,0 +1,169 @@
+\documentclass[12pt]{report}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\usepackage[makeroom]{cancel}
+\graphicspath{ {./img/} }
+\setlength\parindent{0pt}
+
+\makeatletter
+\newcommand*{\Xbar}{}%
+\DeclareRobustCommand*{\Xbar}{%
+	\mathpalette\@Xbar{}%
+}
+\newcommand*{\@Xbar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{X}\m@th$}%
+	\sbox2{$#1X\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\makeatletter
+\newcommand*{\xbar}{}%
+\DeclareRobustCommand*{\xbar}{%
+	\mathpalette\@xbar{}%
+}
+\newcommand*{\@xbar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{x}\m@th$}%
+	\sbox2{$#1x\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\makeatletter
+\newcommand*{\Ybar}{}%
+\DeclareRobustCommand*{\Ybar}{%
+	\mathpalette\@Ybar{}%
+}
+\newcommand*{\@Ybar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{Y}\m@th$}%
+	\sbox2{$#1Y\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\makeatletter
+\newcommand*{\ybar}{}%
+\DeclareRobustCommand*{\ybar}{%
+	\mathpalette\@ybar{}%
+}
+\newcommand*{\@ybar}[2]{%
+	% #1: math style
+	% #2: unused (empty)
+	\sbox0{$#1\mathrm{y}\m@th$}%
+	\sbox2{$#1y\m@th$}%
+	\rlap{%
+		\hbox to\wd2{%
+			\hfill
+			$\overline{%
+				\vrule width 0pt height\ht0 %
+				\kern\wd0 %
+			}$%
+		}%
+	}%
+	\copy2 %
+}
+\makeatother
+
+\newcommand{\thn}{\textsuperscript{th}}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{} #2 \\
+		#3 & \mbox{} #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{} #2 \\
+		#3 & \mbox{} #4 \\
+		#5 & \mbox{} #6
+	\end{array}
+	\right.
+}
+
+\newcommand{\sep}{\medskip\hrule\medskip}
+
+\begin{document}
+
+\Large
+\centering
+AMS310 Homework 6
+
+\justify
+\normalsize
+
+Kuba Gasiorowski\\
+ID: 109776237\\
+
+\noindent \textbf{1.} Asphalt $ \rightarrow \Xbar = 29,700;\;s_1 = 9,700;\;n=35$\\
+Concrete $ \rightarrow \Ybar = 25,500;\;s_2 = 7,800;\;m=35$\\
+
+\noindent $H_0: \mu_1 = \mu_2\\
+H_1: \mu_1 > \mu_2\\\\
+\alpha = 0.01$
+\begin{align*}
+	z &= \frac{(\xbar - \ybar)}{\sqrt{\frac{s_1^2}{m} + \frac{s_2^2}{n}}}\\
+	z &= \frac{29700 - 25500}{\sqrt{\frac{(9700)^2}{35} + \frac{(7800)^2}{35}}}\\
+	z &= \frac{4200}{2103.942}\\
+	z &\approx 1.996
+\end{align*}
+
+\noindent Rejection region: $z \geq z_\alpha \rightarrow 1.996 \,\cancel{\geq}\, 2.33$, so \underline{we do not have sufficient evidence to reject} $H_0$.
+
+\begin{align*}
+	p &= P(Z \geq z)\\
+	&= 1 - P(Z \leq z)\\
+	&= 1 - P(Z \leq 1.996)\\
+	&= \boxed{.9767}
+\end{align*}
+
+\noindent \textbf{2.}
+
+\end{document}
+
+
